@@ -1,4 +1,4 @@
-# Floppy
+# 💾 Floppy
 Archive Slack posts with reaction
 
 ![Floppy](floppy.png)
