@@ -1,0 +1,33 @@
+{
+  "name": "floppy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "env": "export $(cat .env | xargs) && env",
+    "dev": "export $(cat .env | xargs) && node src/server.js",
+    "build": "next build src",
+    "start": "NODE_ENV=production export $(cat .env | xargs) && node src/server.js",
+    "docker:build": "export $(cat .env | xargs) && cross-conf-env docker build . -t $CONTAINER_REPO",
+    "docker:run": "export $(cat .env | xargs) && docker run -e PORT=$DEV_PORT -p $DEV_PORT:$DEV_PORT $CONTAINER_REPO",
+    "docker:push": "export $(cat .env | xargs) && docker push $CONTAINER_REPO",
+    "gcloud:deploy": "export $(cat .env | xargs) && gcloud beta run deploy $SERVICE --image $CONTAINER_REPO --region $REGION"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^1.3.0",
+    "@slack/events-api": "^2.2.0",
+    "@slack/web-api": "^5.0.1",
+    "@zeit/next-css": "^1.0.1",
+    "express": "^4.16.4",
+    "moment": "^2.24.0",
+    "next": "^8.1.0",
+    "node-emoji": "^1.10.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.1"
+  },
+  "devDependencies": {
+    "env-cmd": "^9.0.1"
+  }
+}
